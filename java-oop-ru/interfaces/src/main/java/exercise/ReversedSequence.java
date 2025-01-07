@@ -28,8 +28,8 @@ public class ReversedSequence implements CharSequence {
         return getInitialString().subSequence(start, end);
     }
 
-    public static String reversedSequence(String initialString) {
-        return new StringBuilder(initialString).reverse().toString();
+    public static String reversedSequence(String initString) {
+        return new StringBuilder(initString).reverse().toString();
     }
 
 
