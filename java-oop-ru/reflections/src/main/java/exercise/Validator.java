@@ -16,7 +16,7 @@ public class Validator {
                 field.setAccessible(true);
                 try {
                     if (field.get(address) == null) {
-                       notPassedValidation.add(field.getName());
+                        notPassedValidation.add(field.getName());
                     }
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
@@ -43,7 +43,8 @@ public class Validator {
                             MinLength minLengthAnnotation = field.getAnnotation(MinLength.class);
                             int minLength = minLengthAnnotation.minLength();
                             if (value instanceof String &&  ((String) value).length() < minLength) {
-                                listOfErrors.computeIfAbsent(field.getName(), k -> new ArrayList<>()).add("length less than " + minLength);
+                                listOfErrors.computeIfAbsent(field.getName(), k -> new ArrayList<>())
+                                        .add("length less than " + minLength);
                             }
                         }
                     }
@@ -60,7 +61,7 @@ public class Validator {
 
 
             } catch (IllegalAccessException e) {
-                            e.printStackTrace();
+                e.printStackTrace();
             }
         }
         return listOfErrors;
