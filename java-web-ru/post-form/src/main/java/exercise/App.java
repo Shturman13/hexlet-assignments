@@ -40,8 +40,8 @@ public final class App {
             var email = ctx.formParam("email").trim();
             var password = ctx.formParam("password");
 
-            firstName = firstName != null ? firstName.toUpperCase() : "";
-            lastName = lastName != null ? lastName.toUpperCase() : "";
+            firstName = firstName != null ? StringUtils.capitalize(firstName) : "";
+            lastName = lastName != null ? StringUtils.capitalize(lastName) : "";
             email = email != null ? email.trim().toLowerCase() : "";
             var user = new User(firstName, lastName, email, Security.encrypt(password));
 
