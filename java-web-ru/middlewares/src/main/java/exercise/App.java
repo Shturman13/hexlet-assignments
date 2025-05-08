@@ -32,7 +32,7 @@ public final class App {
         app.after(ctx -> {
             String responseBody = ctx.result() != null ? ctx.result() : "";
             String sha256hex = DigestUtils.sha256Hex(responseBody);
-            ctx.header("X-Response_Digest", sha256hex);
+            ctx.header("X-Response-Digest", sha256hex);
         });
         // END
 
