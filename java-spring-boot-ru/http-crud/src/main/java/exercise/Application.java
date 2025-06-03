@@ -22,7 +22,11 @@ public class Application {
     // BEGIN
     @GetMapping("/posts")
     public List<Post> index(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit) {
-        return posts.stream().limit(limit).toList();
+        int skip = (page - 1) * limit;
+        return posts.stream()
+                .skip(skip)
+                .limit(limit)
+                .toList();
     }
 
     @GetMapping("/posts/{id}")
@@ -39,14 +43,14 @@ public class Application {
 
     @PutMapping("/posts/{id}")
     public Post update(@PathVariable String id, @RequestBody Post postData) {
-        var maybePage = posts.stream()
+        var maybePost = posts.stream()
                 .filter(p -> p.getId().equals(id))
                 .findFirst();
-        if (maybePage.isPresent()) {
-            var page = maybePage.get();
-            page.setId(postData.getId());
-            page.setBody(postData.getBody());
-            page.setBody(postData.getTitle());
+        if (maybePost.isPresent()) {
+            var post = maybePost.get();
+            post.setTitle(postData.getTitle());
+            post.setBody(postData.getBody());
+            return post;
         }
         return postData;
     }
