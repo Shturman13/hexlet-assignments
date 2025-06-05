@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Post {
-    private Long userId;
+    private int userId;
     private String slug;
     private String title;
     private String body;

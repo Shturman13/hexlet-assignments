@@ -53,7 +53,7 @@ class ApplicationTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(post1));
 
-        post1.setUserId(999L);
+        post1.setUserId(999);
 
         mockMvc.perform(request1)
                 .andExpect(status().isCreated())
@@ -68,7 +68,7 @@ class ApplicationTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(post2));
 
-        post2.setUserId(999L);
+        post2.setUserId(999);
 
         mockMvc.perform(request2)
                 .andExpect(status().isCreated())

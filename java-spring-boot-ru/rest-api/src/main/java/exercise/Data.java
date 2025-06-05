@@ -24,7 +24,7 @@ public class Data {
             post.setSlug("post" + ids.get(i));
             post.setTitle(faker.gameOfThrones().house());
             post.setBody(faker.gameOfThrones().quote());
-            post.setUserId((long) ((i + 1) % 5));
+            post.setUserId((i + 1) % 5);
             posts.add(post);
         }
 

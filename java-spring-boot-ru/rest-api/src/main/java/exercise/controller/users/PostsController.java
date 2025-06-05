@@ -13,24 +13,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import exercise.model.Post;
 import exercise.Data;
 
+// BEGIN
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api")
 public class PostsController {
+    private List<Post> posts = Data.getPosts();
 
-    // Получение списка постов пользователя по его id
-    @GetMapping("/{id}/posts")
-    public List<Post> getUserPosts(@PathVariable Long id) {
-        return Data.getPosts().stream()
-                .filter(post -> post.getUserId().equals(id))
-                .toList();
-    }
-
-    // Создание нового поста для пользователя
-    @PostMapping("/{id}/posts")
     @ResponseStatus(HttpStatus.CREATED)
-    public Post createPost(@PathVariable Long id, @RequestBody Post post) {
-        post.setUserId(id);
-        Data.getPosts().add(post);
+    @PostMapping("/users/{userId}/posts")
+    public Post create(@PathVariable Integer userId, @RequestBody Post post) {
+        post.setUserId(userId);
+        posts.add(post);
         return post;
     }
+
+    @GetMapping("/users/{userId}/posts")
+    public List<Post> show(@PathVariable Integer userId) {
+        return posts.stream()
+                .filter(p -> p.getUserId() == userId).toList();
+    }
 }
+// END
